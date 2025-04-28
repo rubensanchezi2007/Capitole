@@ -81,7 +81,8 @@ components:
           type: string
           format: date-time
         price:
-          type: double
+          type: number
+          format: double
     Error:
       type: object
       properties:
