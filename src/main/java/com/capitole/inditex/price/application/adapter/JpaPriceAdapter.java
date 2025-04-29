@@ -1,8 +1,8 @@
-package com.capitole.inditex.price.application.outbound.adapter;
+package com.capitole.inditex.price.application.adapter;
 
-import com.capitole.inditex.price.application.outbound.PriceMapper;
-import com.capitole.inditex.price.domain.PriceRepository;
+import com.capitole.inditex.price.application.mapper.PriceMapper;
 import com.capitole.inditex.price.domain.Price;
+import com.capitole.inditex.price.domain.PriceRepository;
 import com.capitole.inditex.price.infrastructure.outbound.repository.PriceJPARepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

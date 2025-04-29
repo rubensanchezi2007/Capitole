@@ -1,6 +1,7 @@
 package com.capitole.inditex.price.application.service;
 
 import com.capitole.inditex.price.domain.Price;
+import com.capitole.inditex.price.domain.PriceException;
 import com.capitole.inditex.price.domain.PriceRepository;
 import com.capitole.inditex.price.infrastructure.inbound.PriceController;
 import lombok.RequiredArgsConstructor;
@@ -23,28 +24,26 @@ public class PriceService {
 
     private final PriceRepository priceRepository;
 
-    public Price getPriceByDate(Integer productId, Integer brandId, LocalDateTime date) throws Exception
+    public Price getPriceByDate(Integer productId, Integer brandId, LocalDateTime date)
     {
         log.info("Service Get Price by productId {} brandId {} date {}",productId,brandId,date);
         List<Price> listPrices=priceRepository.findPriceByDate(productId,brandId,date);
-        return listPrices.stream()
-            .collect(Collectors.groupingBy(
-                    Price::getPriority,
-                    TreeMap::new,
-                    Collectors.toList()
-            ))
-            .lastEntry()
-            .getValue()
-                 .stream()
-                 .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of))
-                 .filter(l -> !l.isEmpty()).orElseThrow(() -> new Exception("not found"))
+
+            return listPrices
                     .stream()
-                    .findFirst()
-                    .get();
-
-
-
-
+                    .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of))
+                    .filter(l -> !l.isEmpty()).orElseThrow(PriceException::notFound)
+                        .stream()
+                            .collect(Collectors.groupingBy(
+                                Price::getPriority,
+                                TreeMap::new,
+                                Collectors.toList()
+                            ))
+                            .lastEntry()
+                            .getValue()
+                                .stream()
+                                .findFirst()
+                            .get();
 
 
 

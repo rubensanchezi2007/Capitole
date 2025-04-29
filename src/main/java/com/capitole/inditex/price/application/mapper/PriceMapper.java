@@ -1,12 +1,8 @@
-package com.capitole.inditex.price.application.outbound;
+package com.capitole.inditex.price.application.mapper;
 
 import com.capitole.inditex.price.domain.Price;
 import com.capitole.inditex.price.infrastructure.outbound.entities.PriceEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
-import org.mapstruct.ReportingPolicy;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
