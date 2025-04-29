@@ -21,12 +21,6 @@ paths:
       operationId: getPriceByProduct
       parameters:
         - in: query
-          name: date
-          description: date parameter that filers price
-          schema:
-            type: string
-          required: true
-        - in: query
           name: productId
           description: productId where price needs to be queried
           schema:
@@ -38,6 +32,13 @@ paths:
           schema:
             type: string
           required: true
+        - in: query
+          name: date
+          description: date parameter that filers price
+          schema:
+            type: string
+          required: true
+
 
       responses:
         '200':
@@ -45,7 +46,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Price'
+                $ref: '#/components/schemas/GetPriceResponse'
         '400':
           description: Bad Request
         '404':
@@ -59,7 +60,7 @@ paths:
 
 components:
   schemas:
-    Price:
+    GetPriceResponse:
       type: object
       properties:
         productId:
@@ -80,7 +81,7 @@ components:
         endDate:
           type: string
           format: date-time
-        price:
+        totalPrice:
           type: number
           format: double
     Error:

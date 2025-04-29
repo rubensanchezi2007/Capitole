@@ -1,42 +1,32 @@
 package com.capitole.inditex.price.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "Prices")
+
+@Getter
+@Builder
 public class Price {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    private  Long productId;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn (name = "brand_id")
-    Brand brand;
+    private  Integer brandId;
 
-    @Column
-    private LocalDateTime start_date;
+    private  Integer priceList;
 
-    @Column
-    private LocalDateTime end_date;
+    private  LocalDateTime startDate;
 
-    @Column
-    private Integer price_list;
+    private  LocalDateTime endDate;
 
-    @Column
-    private Long product_id;
+    private  BigDecimal totalPrice;
 
-    @Column
     private Integer priority;
 
-    @Column
-    private BigDecimal price;
-
-    @Column
-    private String currency;
 }

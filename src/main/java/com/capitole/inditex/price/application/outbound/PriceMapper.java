@@ -1,0 +1,36 @@
+package com.capitole.inditex.price.application.outbound;
+
+import com.capitole.inditex.price.domain.Price;
+import com.capitole.inditex.price.infrastructure.outbound.entities.PriceEntity;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+import org.mapstruct.ReportingPolicy;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Mapper(componentModel = "spring")
+public interface PriceMapper {
+
+        List<Price> map(List<PriceEntity> priceList);
+
+        default Price map(PriceEntity price) {
+             return   Price.builder().brandId(price.getBrand().getId())
+                        .productId(price.getProduct_id())
+                        .priceList(price.getPrice_list())
+                        .startDate(price.getStart_date())
+                        .endDate(price.getEnd_date())
+                        .totalPrice(price.getTotal_price())
+                        .priority(price.getPriority())
+                     .build();
+
+
+        }
+/*
+        @Mapping(target = "priceList", source = "price.price_list")
+        Price toDTO(PriceEntity price);
+        List<Price> toDTO(List<PriceEntity> priceEntity);
+
+*/
+}
