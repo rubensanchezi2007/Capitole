@@ -5,6 +5,7 @@ import com.capitole.inditex.price.application.mapper.PriceErrorMapper;
 import com.capitole.inditex.price.domain.PriceError;
 import com.capitole.inditex.price.domain.PriceException;
 import com.capitole.inditex.price.infrastructure.inbound.PriceController;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +16,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice(assignableTypes = PriceController.class)
+@AllArgsConstructor
 public class PriceControllerAdvice extends ResponseEntityExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(PriceControllerAdvice.class);
 
-    @Autowired
     PriceErrorMapper priceErrorMapper;
 
     @ExceptionHandler(PriceException.class)
     public ResponseEntity<Error> priceException(final PriceException e)
     {
         log.error("Call to Price service failed with errorCode {}, errorMessage {}",e.getError().getErrorCode(),e.getMessage());
-
 
         return new ResponseEntity<>(priceErrorMapper.toDTO(PriceError.builder()
                 .errorCode(e.getError().getErrorCode())
@@ -37,8 +37,6 @@ public class PriceControllerAdvice extends ResponseEntityExceptionHandler {
 
 
     }
-
-
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Error> priceGeneralError(final Exception e) {

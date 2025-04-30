@@ -23,10 +23,5 @@ public interface PriceMapper {
 
 
         }
-/*
-        @Mapping(target = "priceList", source = "price.price_list")
-        Price toDTO(PriceEntity price);
-        List<Price> toDTO(List<PriceEntity> priceEntity);
 
-*/
 }
