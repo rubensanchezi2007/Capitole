@@ -12,7 +12,7 @@ public interface PriceMapper {
         List<Price> map(List<PriceEntity> priceList);
 
         default Price map(PriceEntity price) {
-             return   Price.builder().brandId(price.getBrand().getId())
+             return   Price.builder().brandId(price.getBrand().getBrandId())
                         .productId(price.getProduct_id())
                         .priceList(price.getPrice_list())
                         .startDate(price.getStart_date())

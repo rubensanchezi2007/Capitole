@@ -1,16 +1,18 @@
 package com.capitole.inditex.price.infrastructure.outbound.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 
-@Getter
+@Data
 @Entity
 @Table(name = "Brands")
 public class BrandEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
+    private Integer brandId;
 
     @Column
-    private String brand_name;
+    private String brandName;
 }
