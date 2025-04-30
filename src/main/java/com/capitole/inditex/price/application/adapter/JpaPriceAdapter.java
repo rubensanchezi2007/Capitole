@@ -18,7 +18,7 @@ public class JpaPriceAdapter implements PriceRepository {
 
 
     @Override
-    public List<Price> findPriceByDate(Integer productId, Integer brandId, LocalDateTime date) {
+    public List<Price> findPriceByDate(Long productId, Integer brandId, LocalDateTime date) {
         return priceMapper.map(priceJPARepository.findPriceByDate(productId,brandId,date));
     }
 }

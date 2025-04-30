@@ -24,7 +24,7 @@ public class PriceService {
 
     private final PriceRepository priceRepository;
 
-    public Price getPriceByDate(Integer productId, Integer brandId, LocalDateTime date)
+    public Price getPriceByDate(Long productId, Integer brandId, LocalDateTime date)
     {
         log.info("Service Get Price by productId {} brandId {} date {}",productId,brandId,date);
         List<Price> listPrices=priceRepository.findPriceByDate(productId,brandId,date);

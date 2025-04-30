@@ -13,5 +13,5 @@ import java.util.List;
 public interface PriceJPARepository extends JpaRepository<PriceEntity,Long> {
 
     @Query("select p from PriceEntity p where p.product_id = ?1 AND p.brand.id= ?2 AND (p.start_date<?3 AND p.end_date>?3)")
-    public List<PriceEntity> findPriceByDate(Integer productId, Integer brandId, LocalDateTime date);
+    public List<PriceEntity> findPriceByDate(Long productId, Integer brandId, LocalDateTime date);
 }

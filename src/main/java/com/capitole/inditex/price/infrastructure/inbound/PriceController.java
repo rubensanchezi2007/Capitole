@@ -31,7 +31,7 @@ public class PriceController implements PriceApi {
 
         log.info("Get Price by productId {} brandId {} date {}",productId,brandId,date);
 
-        GetPriceResponse getPriceResponse=priceControllerMapper.toDTO(priceService.getPriceByDate(Integer.valueOf(productId),Integer.valueOf(brandId),LocalDateTime.parse(date,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+        GetPriceResponse getPriceResponse=priceControllerMapper.toDTO(priceService.getPriceByDate(Long.valueOf(productId),Integer.valueOf(brandId),LocalDateTime.parse(date,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         return ResponseEntity.ok(
                 getPriceResponse
         );

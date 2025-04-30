@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface PriceRepository {
 
-    List<Price> findPriceByDate (Integer productId, Integer brandId, LocalDateTime date);
+    List<Price> findPriceByDate (Long productId, Integer brandId, LocalDateTime date);
 
 }
