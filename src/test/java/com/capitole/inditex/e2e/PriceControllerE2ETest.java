@@ -21,10 +21,7 @@ import org.testcontainers.utility.MountableFile;
 @AutoConfigureWebTestClient
 @Testcontainers
 
-class ApplicationTests {
-
-	//static final MySQLContainer MY_SQL_CONTAINER;
-
+class PriceControllerE2ETest {
 
 	@Autowired
 	WebTestClient webTestClient;

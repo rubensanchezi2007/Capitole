@@ -1,11 +1,15 @@
 package com.capitole.inditex.price.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
 @Builder(builderClassName = "Builder", toBuilder = true)
+@JsonDeserialize(builder = PriceError.Builder.class)
+
 public class PriceError {
 
     public static final PriceError ERROR_PRICE_NOT_FOUND =
