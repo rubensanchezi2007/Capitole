@@ -5,6 +5,7 @@ import com.capitole.inditex.price.application.mapper.PriceErrorMapper;
 import com.capitole.inditex.price.domain.PriceError;
 import com.capitole.inditex.price.domain.PriceException;
 import com.capitole.inditex.price.infrastructure.inbound.PriceController;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice(assignableTypes = PriceController.class)
+@Hidden
 @AllArgsConstructor
 public class PriceControllerAdvice extends ResponseEntityExceptionHandler {
 
