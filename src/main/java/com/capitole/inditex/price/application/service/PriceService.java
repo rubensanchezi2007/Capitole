@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,26 +20,25 @@ public class PriceService {
 
     public Price getPriceByDate(Long productId, Integer brandId, LocalDateTime date)
     {
-         List<Price> listPrices=priceRepository.findPriceByDate(productId,brandId,date);
-
-            return listPrices
-                    .stream()
-                    .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of))
-                    .filter(l -> !l.isEmpty()).orElseThrow(PriceException::notFound)
-                        .stream()
-                            .collect(Collectors.groupingBy(
-                                Price::getPriority,
-                                TreeMap::new,
-                                Collectors.toList()
-                            ))
-                            .lastEntry()
-                            .getValue()
-                                .stream()
-                                .findFirst()
-                            .get();
+        List<Price> listPrices=priceRepository.findPriceByDate(productId,brandId,date);
 
 
 
+
+        return listPrices.stream().max(Comparator.comparing(Price::getPriority))
+                .stream().findFirst().orElseThrow(PriceException::notFound);
+
+
+         /*Commented code in case same priority compare PriceList
+        return listPrices.stream()//.max(Comparator.comparing(Price::getPriority))
+                .max((p1,p2)->
+                { if (p1.getPriority().equals(p2.getPriority()))
+                        return p1.getPriceList().compareTo(p2.getPriceList());
+                    return p1.getPriority().compareTo(p2.getPriority());
+                })
+                .stream().findFirst().orElseThrow(PriceException::notFound);
+        */
     }
+
 
 }
