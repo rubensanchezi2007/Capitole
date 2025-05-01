@@ -19,17 +19,17 @@ import java.util.Arrays;
 @Slf4j
 public class LogginAspect {
 
-    //private static final Logger log = LoggerFactory.getLogger(LogginAspect.class);
 
 
-    @Pointcut ( "within(@org.springframework.web.bind.annotation.RestController *)" )
-    public void springRestControllerPointcut( )
+    @Pointcut ( "within(@org.springframework.web.bind.annotation.RestController *)" +
+            " || within(@org.springframework.stereotype.Service *)" )
+    public void springComponentsPointcut( )
     {
     }
 
 
-    @Around ( "springRestControllerPointcut()" )
-    public Object logForRestController( ProceedingJoinPoint joinPoint )
+    @Around ( "springComponentsPointcut()" )
+    public Object logForComponents( ProceedingJoinPoint joinPoint )
             throws
             Throwable
     {

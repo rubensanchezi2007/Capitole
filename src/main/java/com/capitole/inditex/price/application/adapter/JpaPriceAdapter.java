@@ -6,11 +6,12 @@ import com.capitole.inditex.price.domain.PriceRepository;
 import com.capitole.inditex.price.infrastructure.outbound.repository.PriceJPARepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Component
+@Repository
 @RequiredArgsConstructor
 public class JpaPriceAdapter implements PriceRepository {
     private final PriceJPARepository priceJPARepository;

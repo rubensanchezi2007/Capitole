@@ -3,10 +3,7 @@ package com.capitole.inditex.price.application.service;
 import com.capitole.inditex.price.domain.Price;
 import com.capitole.inditex.price.domain.PriceException;
 import com.capitole.inditex.price.domain.PriceRepository;
-import com.capitole.inditex.price.infrastructure.inbound.PriceController;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,20 +11,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
 public class PriceService {
 
-    private static final Logger log = LoggerFactory.getLogger(PriceService.class);
-
     private final PriceRepository priceRepository;
 
     public Price getPriceByDate(Long productId, Integer brandId, LocalDateTime date)
     {
-        log.info("Service Get Price by productId {} brandId {} date {}",productId,brandId,date);
-        List<Price> listPrices=priceRepository.findPriceByDate(productId,brandId,date);
+         List<Price> listPrices=priceRepository.findPriceByDate(productId,brandId,date);
 
             return listPrices
                     .stream()
