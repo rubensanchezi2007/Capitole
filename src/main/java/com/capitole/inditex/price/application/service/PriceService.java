@@ -26,7 +26,7 @@ public class PriceService {
 
 
         return listPrices.stream().max(Comparator.comparing(Price::getPriority))
-                .stream().findFirst().orElseThrow(PriceException::notFound);
+                .orElseThrow(PriceException::notFound);
 
 
          /*Commented code in case same priority compare PriceList
@@ -35,8 +35,7 @@ public class PriceService {
                 { if (p1.getPriority().equals(p2.getPriority()))
                         return p1.getPriceList().compareTo(p2.getPriceList());
                     return p1.getPriority().compareTo(p2.getPriority());
-                })
-                .stream().findFirst().orElseThrow(PriceException::notFound);
+                }).orElseThrow(PriceException::notFound);
         */
     }
 
