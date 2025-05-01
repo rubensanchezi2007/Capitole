@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.TreeMap;
@@ -23,15 +22,23 @@ public class PriceService {
     {
          List<Price> listPrices=priceRepository.findPriceByDate(productId,brandId,date);
 
+            return listPrices
+                    .stream()
+                    .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of))
+                    .filter(l -> !l.isEmpty()).orElseThrow(PriceException::notFound)
+                        .stream()
+                            .collect(Collectors.groupingBy(
+                                Price::getPriority,
+                                TreeMap::new,
+                                Collectors.toList()
+                            ))
+                            .lastEntry()
+                            .getValue()
+                                .stream()
+                                .findFirst()
+                            .get();
 
 
-
-        return listPrices.stream()
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of))
-                .filter(l -> !l.isEmpty()).orElseThrow(PriceException::notFound)
-                .stream()
-                    .max(Comparator.comparing(Price::getPriority))
-                    .get();
 
     }
 
