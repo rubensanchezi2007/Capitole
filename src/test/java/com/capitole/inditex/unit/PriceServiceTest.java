@@ -2,7 +2,7 @@ package com.capitole.inditex.unit;
 
 
 import com.capitole.inditex.price.application.service.PriceService;
-import com.capitole.inditex.price.application.port.outbound.PriceRepositoryPort;
+import com.capitole.inditex.price.domain.PriceRepository;
 import com.capitole.inditex.price.domain.model.Price;
 import com.capitole.inditex.price.domain.model.PriceException;
 import org.junit.jupiter.api.Assertions;
@@ -31,7 +31,7 @@ public class PriceServiceTest {
     PriceService priceService;
 
     @MockitoBean
-    PriceRepositoryPort priceRepositoryPort;
+    PriceRepository priceRepository;
 
 
     @BeforeEach
@@ -58,7 +58,7 @@ public class PriceServiceTest {
         expectedList.add(expectedPrice);
 
 
-        doReturn(expectedList).when(priceRepositoryPort).findPriceByDate(any(Long.class), any(Integer.class), any(LocalDateTime.class));
+        doReturn(expectedList).when(priceRepository).findPriceByDate(any(Long.class), any(Integer.class), any(LocalDateTime.class));
 
 
         Price currentPrice = priceService.getPriceByDate(expectedPrice.getProductId(), expectedPrice.getBrandId(), LocalDateTime.parse("2020-06-14 10:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
@@ -72,7 +72,7 @@ public class PriceServiceTest {
     @Test
     public void findPriceByDate_Not_Found() {
 
-        doThrow(PriceException.notFound()).when(priceRepositoryPort).findPriceByDate(any(Long.class), any(Integer.class), any(LocalDateTime.class));
+        doThrow(PriceException.notFound()).when(priceRepository).findPriceByDate(any(Long.class), any(Integer.class), any(LocalDateTime.class));
 
         PriceException thrown = Assertions.assertThrows(
                 PriceException.class,
@@ -119,7 +119,7 @@ public class PriceServiceTest {
         expectedList.add(expectedPriceLow);
 
 
-        doReturn(expectedList).when(priceRepositoryPort).findPriceByDate(any(Long.class), any(Integer.class), any(LocalDateTime.class));
+        doReturn(expectedList).when(priceRepository).findPriceByDate(any(Long.class), any(Integer.class), any(LocalDateTime.class));
 
 
         Price currentPrice = priceService.getPriceByDate(expectedPriceHigh.getProductId(), expectedPriceHigh.getBrandId(), LocalDateTime.parse("2020-06-14 10:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));

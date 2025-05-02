@@ -1,7 +1,6 @@
 package com.capitole.inditex.price.application.service;
 
-import com.capitole.inditex.price.application.port.inbound.PriceServicePort;
-import com.capitole.inditex.price.application.port.outbound.PriceRepositoryPort;
+import com.capitole.inditex.price.domain.PriceRepository;
 import com.capitole.inditex.price.domain.model.Price;
 import com.capitole.inditex.price.domain.model.PriceException;
 import lombok.RequiredArgsConstructor;
@@ -13,14 +12,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PriceService implements PriceServicePort {
+public class PriceService {
 
-    private final PriceRepositoryPort priceRepositoryPort;
+    private final PriceRepository priceRepository;
 
-    @Override
     public Price getPriceByDate(Long productId, Integer brandId, LocalDateTime date)
     {
-        List<Price> listPrices= priceRepositoryPort.findPriceByDate(productId,brandId,date);
+        List<Price> listPrices=priceRepository.findPriceByDate(productId,brandId,date);
 
 
 
