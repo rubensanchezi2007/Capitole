@@ -1,10 +1,9 @@
-package com.capitole.inditex.price.domain;
+package com.capitole.inditex.price.domain.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 @Builder(builderClassName = "Builder", toBuilder = true)

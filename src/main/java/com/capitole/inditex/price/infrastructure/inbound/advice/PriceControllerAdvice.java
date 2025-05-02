@@ -1,9 +1,9 @@
-package com.capitole.inditex.price.application.advice;
+package com.capitole.inditex.price.infrastructure.inbound.advice;
 
 import com.capitole.inditex.domain.Error;
-import com.capitole.inditex.price.application.mapper.PriceErrorMapper;
-import com.capitole.inditex.price.domain.PriceError;
-import com.capitole.inditex.price.domain.PriceException;
+import com.capitole.inditex.price.domain.mapper.PriceErrorMapper;
+import com.capitole.inditex.price.domain.model.PriceError;
+import com.capitole.inditex.price.domain.model.PriceException;
 import com.capitole.inditex.price.infrastructure.inbound.PriceController;
 import io.swagger.v3.oas.annotations.Hidden;
 import lombok.AllArgsConstructor;
