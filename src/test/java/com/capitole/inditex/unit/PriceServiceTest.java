@@ -1,23 +1,17 @@
 package com.capitole.inditex.unit;
 
 
-import com.capitole.inditex.price.application.advice.PriceControllerAdvice;
 import com.capitole.inditex.price.application.service.PriceService;
-import com.capitole.inditex.price.domain.Price;
-import com.capitole.inditex.price.domain.PriceException;
 import com.capitole.inditex.price.domain.PriceRepository;
-import org.assertj.core.util.Arrays;
-import org.junit.Assert;
+import com.capitole.inditex.price.domain.model.Price;
+import com.capitole.inditex.price.domain.model.PriceException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,7 +19,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 
 @SpringBootTest
 @AutoConfigureMockMvc

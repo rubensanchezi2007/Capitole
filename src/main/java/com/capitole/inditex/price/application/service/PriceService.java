@@ -1,16 +1,14 @@
 package com.capitole.inditex.price.application.service;
 
-import com.capitole.inditex.price.domain.Price;
-import com.capitole.inditex.price.domain.PriceException;
 import com.capitole.inditex.price.domain.PriceRepository;
+import com.capitole.inditex.price.domain.model.Price;
+import com.capitole.inditex.price.domain.model.PriceException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

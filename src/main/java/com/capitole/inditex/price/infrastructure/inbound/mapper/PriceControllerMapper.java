@@ -1,9 +1,7 @@
-package com.capitole.inditex.price.infrastructure.inbound;
+package com.capitole.inditex.price.infrastructure.inbound.mapper;
 
 import com.capitole.inditex.domain.GetPriceResponse;
-import com.capitole.inditex.price.domain.Price;
-import com.capitole.inditex.price.infrastructure.outbound.entities.PriceEntity;
-import org.mapstruct.Context;
+import com.capitole.inditex.price.domain.model.Price;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -11,7 +9,6 @@ import org.mapstruct.Named;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Mapper(componentModel = "spring")

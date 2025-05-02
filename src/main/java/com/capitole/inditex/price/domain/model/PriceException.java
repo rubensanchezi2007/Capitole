@@ -1,4 +1,4 @@
-package com.capitole.inditex.price.domain;
+package com.capitole.inditex.price.domain.model;
 
 import lombok.Builder;
 import lombok.Getter;

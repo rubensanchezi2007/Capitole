@@ -4,6 +4,7 @@ package com.capitole.inditex.price.infrastructure.inbound;
 import com.capitole.inditex.api.PriceApi;
 import com.capitole.inditex.domain.GetPriceResponse;
 import com.capitole.inditex.price.application.service.PriceService;
+import com.capitole.inditex.price.infrastructure.inbound.mapper.PriceControllerMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
