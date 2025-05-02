@@ -30,7 +30,7 @@ class PriceControllerE2ETest {
 	private PriceJPARepository priceJPARepository;
 
 
-		public static MySQLContainer<?> MY_SQL_CONTAINER  = new MySQLContainer<>("mysql:5.7");
+		public static MySQLContainer<?> MY_SQL_CONTAINER  = new MySQLContainer<>("mysql:9.2.0");
 
 	static {
 		MY_SQL_CONTAINER
