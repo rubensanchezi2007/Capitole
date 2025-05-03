@@ -3,6 +3,7 @@ package com.capitole.inditex.price.infrastructure.inbound;
 
 import com.capitole.inditex.api.PriceApi;
 import com.capitole.inditex.domain.GetPriceResponse;
+import com.capitole.inditex.price.application.port.inbound.PriceServicePort;
 import com.capitole.inditex.price.application.service.PriceService;
 import com.capitole.inditex.price.infrastructure.inbound.mapper.PriceControllerMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class PriceController implements PriceApi {
 
 
 
-    private final PriceService priceService;
+    private final PriceServicePort priceService;
     private final PriceControllerMapper priceControllerMapper;
 
 
