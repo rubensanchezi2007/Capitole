@@ -23,7 +23,6 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 
 @SpringBootTest
-@AutoConfigureMockMvc
 public class PriceServiceTest {
 
 
