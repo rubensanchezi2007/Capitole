@@ -1,15 +1,12 @@
 package com.capitole.inditex.unit;
-
-
-import com.capitole.inditex.price.application.service.PriceService;
 import com.capitole.inditex.price.application.port.outbound.PriceRepositoryPort;
+import com.capitole.inditex.price.application.service.PriceService;
 import com.capitole.inditex.price.domain.model.Price;
-import com.capitole.inditex.price.domain.model.PriceException;
+import com.capitole.inditex.price.domain.model.PriceNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
@@ -71,10 +68,10 @@ public class PriceServiceTest {
     @Test
     public void findPriceByDate_Not_Found() {
 
-        doThrow(PriceException.notFound()).when(priceRepositoryPort).findPriceByDate(any(Long.class), any(Integer.class), any(LocalDateTime.class));
+        doThrow(PriceNotFoundException.notFound()).when(priceRepositoryPort).findPriceByDate(any(Long.class), any(Integer.class), any(LocalDateTime.class));
 
-        PriceException thrown = Assertions.assertThrows(
-                PriceException.class,
+        PriceNotFoundException thrown = Assertions.assertThrows(
+                PriceNotFoundException.class,
                 () -> priceService.getPriceByDate(1L,1,LocalDateTime.parse("2020-06-14 10:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))),
                 "Expected doThing() to throw, but it didn't"
         );

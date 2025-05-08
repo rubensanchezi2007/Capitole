@@ -14,11 +14,11 @@ import java.util.Arrays;
 public class LogginAspect {
     @Pointcut("within(@org.springframework.web.bind.annotation.RestController *)" +
             " || within(@org.springframework.stereotype.Service *)")
-    public void springComponentsPointcut() {
+    private void springComponentsPointcut() {
     }
 
     @Around("springComponentsPointcut()")
-    public Object logForComponents(ProceedingJoinPoint joinPoint)
+    private Object logForComponents(ProceedingJoinPoint joinPoint)
             throws
             Throwable {
         log.info("Entered: {} with argument[{}] ",
