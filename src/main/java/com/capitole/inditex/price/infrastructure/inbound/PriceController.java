@@ -1,6 +1,4 @@
 package com.capitole.inditex.price.infrastructure.inbound;
-
-
 import com.capitole.inditex.api.PriceApi;
 import com.capitole.inditex.domain.GetPriceResponse;
 import com.capitole.inditex.price.application.port.inbound.PriceServicePort;
@@ -16,20 +14,12 @@ import java.time.format.DateTimeFormatter;
 @RestController
 @RequiredArgsConstructor
 public class PriceController implements PriceApi {
-
-
-
     private final PriceServicePort priceService;
     private final PriceControllerMapper priceControllerMapper;
 
-
-
-
     @Override
-    public ResponseEntity<GetPriceResponse> getPriceByProduct(String productId, String brandId,String date ) {
-
-
-        GetPriceResponse getPriceResponse=priceControllerMapper.toDTO(priceService.getPriceByDate(Long.valueOf(productId),Integer.valueOf(brandId),LocalDateTime.parse(date,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+    public ResponseEntity<GetPriceResponse> getPriceByProduct(String productId, String brandId, String date) {
+        GetPriceResponse getPriceResponse = priceControllerMapper.toDTO(priceService.getPriceByDate(Long.valueOf(productId), Integer.valueOf(brandId), LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         return ResponseEntity.ok(
                 getPriceResponse
         );

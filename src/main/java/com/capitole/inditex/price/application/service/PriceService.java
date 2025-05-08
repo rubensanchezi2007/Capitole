@@ -1,5 +1,4 @@
 package com.capitole.inditex.price.application.service;
-
 import com.capitole.inditex.price.application.port.inbound.PriceServicePort;
 import com.capitole.inditex.price.application.port.outbound.PriceRepositoryPort;
 import com.capitole.inditex.price.domain.model.Price;
@@ -14,30 +13,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PriceService implements PriceServicePort {
-
     private final PriceRepositoryPort priceRepositoryPort;
 
     @Override
-    public Price getPriceByDate(Long productId, Integer brandId, LocalDateTime date)
-    {
-        List<Price> listPrices= priceRepositoryPort.findPriceByDate(productId,brandId,date);
-
-
-
-
+    public Price getPriceByDate(Long productId, Integer brandId, LocalDateTime date) {
+        List<Price> listPrices = priceRepositoryPort.findPriceByDate(productId, brandId, date);
         return listPrices.stream().max(Comparator.comparing(Price::getPriority))
                 .orElseThrow(PriceException::notFound);
-
-
-         /*Commented code in case same priority compare PriceList
-        return listPrices.stream()//.max(Comparator.comparing(Price::getPriority))
-                .max((p1,p2)->
-                { if (p1.getPriority().equals(p2.getPriority()))
-                        return p1.getPriceList().compareTo(p2.getPriceList());
-                    return p1.getPriority().compareTo(p2.getPriority());
-                }).orElseThrow(PriceException::notFound);
-        */
     }
-
-
 }

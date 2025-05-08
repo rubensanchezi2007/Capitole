@@ -1,28 +1,18 @@
 package com.capitole.inditex.price.domain.model;
-
 import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-
 @Getter
 @Builder
 public class Price {
-
-    private  Long productId;
-
-    private  Integer brandId;
-
-    private  Integer priceList;
-
-    private  LocalDateTime startDate;
-
-    private  LocalDateTime endDate;
-
-    private  BigDecimal totalPrice;
-
-    private Integer priority;
-
+    private final Long productId;
+    private final Integer brandId;
+    private final Integer priceList;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
+    private final BigDecimal totalPrice;
+    private final Integer priority;
 }

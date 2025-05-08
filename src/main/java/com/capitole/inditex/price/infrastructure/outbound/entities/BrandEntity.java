@@ -1,5 +1,4 @@
 package com.capitole.inditex.price.infrastructure.outbound.entities;
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -10,9 +9,7 @@ import lombok.Getter;
 public class BrandEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer brandId;
-
     @Column
     private String brandName;
 }

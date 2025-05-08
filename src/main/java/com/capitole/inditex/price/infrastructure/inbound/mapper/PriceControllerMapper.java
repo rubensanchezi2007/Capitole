@@ -1,5 +1,4 @@
 package com.capitole.inditex.price.infrastructure.inbound.mapper;
-
 import com.capitole.inditex.domain.GetPriceResponse;
 import com.capitole.inditex.price.domain.model.Price;
 import org.mapstruct.Mapper;
@@ -14,30 +13,21 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PriceControllerMapper {
 
+    @Mapping(target = "startDate", source = "price", qualifiedByName = "startDate")
+    @Mapping(target = "endDate", source = "price", qualifiedByName = "endDate")
+    GetPriceResponse toDTO(Price price);
 
+    @Named("startDate")
+    default OffsetDateTime mapStartDate(Price p) {
+        ZonedDateTime zonedDateTime = p.getStartDate().atZone(ZoneId.systemDefault());
+        return zonedDateTime.toOffsetDateTime();
+    }
 
+    @Named("endDate")
+    default OffsetDateTime mapEndDate(Price p) {
+        ZonedDateTime zonedDateTime = p.getStartDate().atZone(ZoneId.systemDefault());
+        return zonedDateTime.toOffsetDateTime();
+    }
 
-        @Mapping(target = "startDate", source = "price", qualifiedByName = "startDate")
-        @Mapping(target = "endDate", source = "price", qualifiedByName = "endDate")
-
-        GetPriceResponse toDTO(Price price);
-
-        @Named("startDate")
-        default OffsetDateTime mapStartDate(Price p) {
-
-                ZonedDateTime zonedDateTime = p.getStartDate().atZone(ZoneId.systemDefault());
-                return zonedDateTime.toOffsetDateTime();
-        }
-
-        @Named("endDate")
-        default OffsetDateTime mapEndDate(Price p) {
-
-                ZonedDateTime zonedDateTime = p.getStartDate().atZone(ZoneId.systemDefault());
-                return zonedDateTime.toOffsetDateTime();
-        }
-
-
-        List<GetPriceResponse> toDTO(List<Price> price);
-
-
+    List<GetPriceResponse> toDTO(List<Price> price);
 }
