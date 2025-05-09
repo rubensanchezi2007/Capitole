@@ -19,7 +19,7 @@ public class PriceControllerAdvice extends ResponseEntityExceptionHandler {
     private final PriceErrorMapper priceErrorMapper;
 
     @ExceptionHandler(PriceNotFoundException.class)
-     private ResponseEntity<Error> priceException(final PriceNotFoundException e) {
+      ResponseEntity<Error> priceException(final PriceNotFoundException e) {
         return new ResponseEntity<>(priceErrorMapper.toDTO(PriceError.builder()
                 .errorCode(e.getError().getErrorCode())
                 .errorMessage(e.getError().getErrorMessage())
@@ -29,7 +29,7 @@ public class PriceControllerAdvice extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-     private ResponseEntity<Error> priceGeneralError(final Exception e) {
+      ResponseEntity<Error> priceGeneralError(final Exception e) {
         return new ResponseEntity<>(
                 priceErrorMapper.toDTO(PriceError.builder()
                         .errorCode(PriceNotFoundException.gateway().getError().getErrorCode())

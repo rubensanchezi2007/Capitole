@@ -19,9 +19,8 @@ public class PriceController implements PriceApi {
 
     @Override
     public ResponseEntity<GetPriceResponse> getPriceByProduct(String productId, String brandId, String date) {
-        GetPriceResponse getPriceResponse = priceControllerMapper.toDTO(priceService.getPriceByDate(Long.valueOf(productId), Integer.valueOf(brandId), LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         return ResponseEntity.ok(
-                getPriceResponse
+                priceControllerMapper.toDTO(priceService.getPriceByDate(Long.valueOf(productId), Integer.valueOf(brandId), LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))))
         );
     }
 }
